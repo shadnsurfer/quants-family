@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 4321",
-    "dev:full": "COMING_SOON=off next dev -p 4321",
+    "dev:full": "COMING_SOON=off next dev -p 4322",
     "build": "next build",
     "start": "next start -p 4321",
-    "start:full": "COMING_SOON=off next start -p 4321",
+    "start:full": "COMING_SOON=off next start -p 4322",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
