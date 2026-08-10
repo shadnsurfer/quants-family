@@ -1,0 +1,21 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.next/
+.next-dev/
+.vercel
+.DS_Store
+
+# secrets & machine state — never commit
+.env
+.env.local
+data/keystore/
+build/logs/
+build/state/DUST_OK
+build/state/X_LIVE_OK
+build/state/GO_LIVE_OK
+build/state/health.pid
+
+# licensed font — not redistributable in a public repo. drop SIFONN_PRO.otf into
+# apps/site/public/fonts/ locally; local CLI builds (vercel build --prod) pick it up there.
+apps/site/public/fonts/SIFONN_PRO.otf

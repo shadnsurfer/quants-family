@@ -1,0 +1,165 @@
+{
+  "_readme": [
+    "Pons integration artifact — Phase 4 research, completed 2026-07-22 from live sources:",
+    "  docs:     https://docs.ponsfamily.com  (PROJECT.md's docs.ponsfamily.fi is a wrong TLD; it does not resolve)",
+    "  factory:  verified PonsLaunchFactory on robinhoodchain.blockscout.com (ABI signatures below transcribed from the verified source)",
+    "  locker:   verified PonsLaunchLocker on robinhoodchain.blockscout.com",
+    "CONFIRMED 2026-07-22 against three successful third-party production launches on blockscout",
+    "(e.g. tx 0xd24bfcd3fef0a98d7aaec61109b4db385fda600f2ecc20a76c37f1401baf5124):",
+    "  (1) msg.value = launchFee + initial dev-buy (0.0005 + buy, exactly), (2) launchConfigId=0 dexId=0,",
+    "  (3) TokenParams carries feeWallet. launchFee() live-read returns 0.0005 ETH. WETH verified on-chain.",
+    "Creator fee share 70/30 creator/protocol for new launches (docs, from block 8991118)."
+  ],
+  "researchedAt": "2026-07-22",
+  "network": {
+    "chainId": 4663,
+    "rpcUrl": "https://rpc.mainnet.chain.robinhood.com",
+    "explorer": "https://robinhoodchain.blockscout.com",
+    "nativeCurrency": "ETH"
+  },
+  "factoryAddr": "0xA5aAb3F0c6EeadF30Ef1D3Eb997108E976351feB",
+  "lockerAddr": "0x736D76699C26D0d966744cAe304C000d471f7F35",
+  "wethAddr": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+  "legacy": {
+    "factoryAddr": "0x0c37a24F5D23A486FA692d1500881d698B1F77a4",
+    "lockerAddr": "0x31ca5E101941A93A7DD6d0497928700625CF54B5"
+  },
+  "startBlock": 8991118,
+  "launchFeeEth": 0.0005,
+  "creatorFeeShare": 0.7,
+  "launchFunction": "launchToken",
+  "claimFunction": "collectFees",
+  "readFeesFunction": "collectFees",
+  "launchEvent": "TokenLaunched",
+  "launchConfigId": 0,
+  "dexId": 0,
+  "factoryAbi": [
+    {
+      "type": "function",
+      "name": "launchToken",
+      "stateMutability": "payable",
+      "inputs": [
+        {
+          "name": "params",
+          "type": "tuple",
+          "components": [
+            { "name": "name", "type": "string" },
+            { "name": "symbol", "type": "string" },
+            { "name": "logo", "type": "string" },
+            { "name": "description", "type": "string" },
+            {
+              "name": "socials",
+              "type": "tuple",
+              "components": [
+                { "name": "twitter", "type": "string" },
+                { "name": "telegram", "type": "string" },
+                { "name": "discord", "type": "string" },
+                { "name": "website", "type": "string" },
+                { "name": "farcaster", "type": "string" }
+              ]
+            },
+            { "name": "feeWallet", "type": "address" }
+          ]
+        },
+        { "name": "launchConfigId", "type": "uint256" },
+        { "name": "dexId", "type": "uint256" },
+        { "name": "salt", "type": "bytes32" }
+      ],
+      "outputs": [{ "name": "token", "type": "address" }]
+    },
+    {
+      "type": "function",
+      "name": "launchFee",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint256" }]
+    },
+    {
+      "type": "function",
+      "name": "getLaunchedToken",
+      "stateMutability": "view",
+      "inputs": [{ "name": "token", "type": "address" }],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "components": [
+            { "name": "token", "type": "address" },
+            { "name": "deployer", "type": "address" },
+            { "name": "pairedToken", "type": "address" },
+            { "name": "positionManager", "type": "address" },
+            { "name": "positionId", "type": "uint256" },
+            { "name": "dexId", "type": "uint256" },
+            { "name": "launchConfigId", "type": "uint256" },
+            { "name": "restrictionsEndBlock", "type": "uint256" },
+            { "name": "supply", "type": "uint256" },
+            { "name": "isToken0", "type": "bool" },
+            { "name": "poolFee", "type": "uint24" },
+            { "name": "exists", "type": "bool" },
+            { "name": "initialBuyAmount", "type": "uint256" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "graduationStatus",
+      "stateMutability": "view",
+      "inputs": [{ "name": "token", "type": "address" }],
+      "outputs": [
+        { "name": "pairedPrincipal", "type": "uint256" },
+        { "name": "threshold", "type": "uint256" },
+        { "name": "graduated", "type": "bool" }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "TokenLaunched",
+      "inputs": [
+        { "name": "token", "type": "address", "indexed": true },
+        { "name": "deployer", "type": "address", "indexed": true },
+        { "name": "dexFactory", "type": "address", "indexed": true },
+        { "name": "pairToken", "type": "address", "indexed": false },
+        { "name": "pool", "type": "address", "indexed": false },
+        { "name": "dexId", "type": "uint256", "indexed": false },
+        { "name": "launchConfigId", "type": "uint256", "indexed": false },
+        { "name": "positionId", "type": "uint256", "indexed": false },
+        { "name": "restrictionsEndBlock", "type": "uint256", "indexed": false },
+        { "name": "initialBuyAmount", "type": "uint256", "indexed": false }
+      ]
+    }
+  ],
+  "lockerAbi": [
+    {
+      "type": "function",
+      "name": "collectFees",
+      "stateMutability": "nonpayable",
+      "inputs": [{ "name": "token", "type": "address" }],
+      "outputs": [
+        { "name": "amount0", "type": "uint256" },
+        { "name": "amount1", "type": "uint256" }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "feeRedirects",
+      "stateMutability": "view",
+      "inputs": [{ "name": "token", "type": "address" }],
+      "outputs": [{ "name": "recipient", "type": "address" }]
+    },
+    {
+      "type": "event",
+      "name": "FeesClaimed",
+      "inputs": [
+        { "name": "token", "type": "address", "indexed": true },
+        { "name": "caller", "type": "address", "indexed": true },
+        { "name": "token0", "type": "address", "indexed": false },
+        { "name": "token1", "type": "address", "indexed": false },
+        { "name": "recipientAmount0", "type": "uint256", "indexed": false },
+        { "name": "recipientAmount1", "type": "uint256", "indexed": false },
+        { "name": "protocolAmount0", "type": "uint256", "indexed": false },
+        { "name": "protocolAmount1", "type": "uint256", "indexed": false }
+      ]
+    }
+  ]
+}

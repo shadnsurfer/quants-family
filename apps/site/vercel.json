@@ -1,0 +1,19 @@
+{
+  "framework": "nextjs",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm --filter @quants/site... build",
+  "redirects": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.quants.family" }],
+      "destination": "https://quants.family",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.quants.family" }],
+      "destination": "https://quants.family/:path*",
+      "permanent": true
+    }
+  ]
+}

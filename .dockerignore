@@ -1,0 +1,12 @@
+**/node_modules
+**/.next
+**/.turbo
+**/dist
+.git
+.env
+build/logs
+build/state
+data/keystore
+data/chain
+*.log
+.DS_Store

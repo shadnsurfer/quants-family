@@ -1,0 +1,53 @@
+{
+  "project": "quants",
+  "updatedAt": "2026-08-02T17:37:47.140Z",
+  "activeMilestone": "m8-readiness",
+  "milestones": {
+    "m0-harness": {
+      "status": "done",
+      "attempts": 1,
+      "lastError": null
+    },
+    "m1-core": {
+      "status": "done",
+      "attempts": 2,
+      "lastError": null
+    },
+    "m2-runtime": {
+      "status": "done",
+      "attempts": 1,
+      "lastError": null
+    },
+    "m3-mother": {
+      "status": "done",
+      "attempts": 1,
+      "lastError": null
+    },
+    "m4-dashboard": {
+      "status": "done",
+      "attempts": 1,
+      "lastError": null
+    },
+    "m5-chain-dust": {
+      "status": "done",
+      "attempts": 2,
+      "lastError": null
+    },
+    "m6-twitter": {
+      "status": "done",
+      "attempts": 1,
+      "lastError": null
+    },
+    "m7-dress": {
+      "status": "done",
+      "attempts": 1,
+      "lastError": null
+    },
+    "m8-readiness": {
+      "status": "blocked-waiting-human",
+      "attempts": 1,
+      "lastError": "waiting on human confirmation file"
+    }
+  },
+  "notes": "status values: pending | in-progress | verifying | done | blocked-waiting-human | failed"
+}

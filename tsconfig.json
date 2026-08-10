@@ -1,0 +1,12 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/core" },
+    { "path": "packages/chain" },
+    { "path": "packages/brain" },
+    { "path": "packages/paper" },
+    { "path": "packages/social" },
+    { "path": "apps/quant" },
+    { "path": "apps/system" }
+  ]
+}

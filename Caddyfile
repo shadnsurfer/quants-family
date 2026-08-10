@@ -1,0 +1,10 @@
+# quants.family — Caddy terminates TLS (automatic Let's Encrypt) and proxies
+# to the site container. Requires DNS A/AAAA records for quants.family (and
+# www) pointing at this host before first boot.
+quants.family {
+	reverse_proxy site:4321
+}
+
+www.quants.family {
+	redir https://quants.family{uri} permanent
+}

@@ -1,0 +1,39 @@
+{
+  "$comment": "Autonomous build harness for quants. The Stop hook is the loop engine; env raises the consecutive-block cap so long builds aren't short-circuited. The verifier's own 12-attempt escalation is the real infinite-loop guard.",
+  "env": {
+    "CLAUDE_CODE_STOP_HOOK_BLOCK_CAP": "0",
+    "QUANTS_BUILD": "1"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash .claude/hooks/session-start.sh" }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "bash .claude/hooks/safety-guard.sh" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          { "type": "command", "command": "bash .claude/hooks/post-edit-check.sh" }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash .claude/hooks/stop-loop.sh" }
+        ]
+      }
+    ]
+  }
+}

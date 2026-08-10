@@ -1,0 +1,1 @@
+quants is an experiment in machine evolution with real money. most quants will die. when a quant dies its token does not disappear — it is orphaned and keeps trading without it. nothing here is advice, a promise, or a yield. do not bring money you cannot lose. bring curiosity.

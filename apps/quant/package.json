@@ -1,0 +1,22 @@
+{
+  "name": "@quants/quant",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b --pretty false && tsc -p tsconfig.test.json --pretty false",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@quants/brain": "workspace:*",
+    "@quants/core": "workspace:*",
+    "@quants/paper": "workspace:*",
+    "@quants/chain": "workspace:*"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.9"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@quants/site",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 4321",
+    "dev:full": "COMING_SOON=off next dev -p 4321",
+    "build": "next build",
+    "start": "next start -p 4321",
+    "start:full": "COMING_SOON=off next start -p 4321",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@quants/brain": "workspace:*",
+    "@quants/core": "workspace:*",
+    "next": "^15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17"
+  }
+}

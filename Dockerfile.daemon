@@ -1,0 +1,32 @@
+# quants.family — the season-0 daemon container; also the EigenCompute (TEE) deploy target
+# (PROJECT.md §1.6, 2026-08-09 amendment). Build context is the REPO ROOT:
+#
+#   docker build -f Dockerfile.daemon -t quants-daemon .
+#   docker run --env-file .env \
+#     -v $(pwd)/data/chain:/repo/data/chain:ro \
+#     -v $(pwd)/data/keystore:/repo/data/keystore \
+#     -v $(pwd)/build/state:/repo/build/state \
+#     quants-daemon
+#
+# The image bakes in NO secrets: .env, data/keystore, data/chain and build/state are all
+# dockerignored. Chain artifacts + the turnkey registry arrive as mounts; env arrives via
+# --env-file locally, or as TEE-encrypted env vars on EigenCompute (their KMS decrypts only
+# inside the enclave — standard vars stay hidden, *_PUBLIC vars are transparent by design).
+# With CUSTODY_MODE=turnkey this container holds no key material at all: keys live in
+# Turnkey's enclaves, and the only credential present authorizes signing REQUESTS, not export.
+
+FROM node:22-alpine AS build
+RUN corepack enable
+WORKDIR /repo
+COPY . .
+RUN pnpm install --frozen-lockfile
+# the daemon scripts run from source (.mjs) but import the BUILT workspace packages:
+# @quants/system + @quants/chain and their workspace deps, in topo order
+RUN pnpm --filter "@quants/system..." --filter "@quants/chain..." build
+
+FROM node:22-alpine AS run
+ENV NODE_ENV=production
+WORKDIR /repo
+COPY --from=build /repo ./
+# no ports — the daemon is a loop, not a server. World state persists via the build/state mount.
+CMD ["node", "build/scripts/season0-daemon.mjs", "run"]

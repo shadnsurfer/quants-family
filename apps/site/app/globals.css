@@ -1,0 +1,401 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   quants.family — "acid paper"
+   a technical document, ruled in ink, stamped in acid. near-white paper,
+   hairline rules, ibm plex mono, stix italic for the specimen register.
+   the accent (#ccff00) is a fill, a mark, a highlight — never small text.
+   ============================================================================ */
+:root {
+  --paper: #fdfdfb;
+  --panel: #f5f5ef;
+  --ink: #111311;
+  --dim: #565b53;
+  --faint: #979c90;
+  --rule: #141614;
+  --softrule: #e3e3da;
+  --accent: #ccff00;
+  --up: #14803c;
+  --down: #d43d1f;
+  --amber: #a17305;
+  --well-on: #111311;
+  --well-off: #e3e3da;
+  --on-accent: #0a0c09;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+  background: var(--paper);
+}
+
+body {
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+[id] {
+  scroll-margin-top: 84px;
+}
+
+/* the specimen register: stix italic for formulas, final words, specimen notes */
+.specimen {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-style: italic;
+  color: var(--dim);
+}
+
+/* the acid highlight — key phrases stamped, never tinted */
+.hl {
+  background: var(--accent);
+  color: var(--ink);
+  padding: 0.06em 0.26em;
+  border-radius: 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* ---------------------------------------------------------------------------
+   micro-labels: tiny tracked caps, led by an acid square
+   --------------------------------------------------------------------------- */
+.kicker {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.kicker::before {
+  content: "▪";
+  color: var(--accent);
+  margin-right: 0.55em;
+  /* the square must read on paper — ink outline via text-shadow trick */
+  text-shadow: 0 0 0 var(--ink);
+}
+.kicker-flat::before {
+  content: none;
+}
+
+/* ---------------------------------------------------------------------------
+   intro choreography (hero): staggered scale/rise, elevator tempo
+   --------------------------------------------------------------------------- */
+@keyframes introTextIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes introScaleIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.intro-mark   { animation: introScaleIn 0.72s cubic-bezier(.22,1,.36,1) 0.06s both; }
+.intro-l1     { display: block; animation: introTextIn 0.78s cubic-bezier(.22,1,.36,1) 0.16s both; }
+.intro-l2     { display: block; animation: introTextIn 0.78s cubic-bezier(.22,1,.36,1) 0.28s both; }
+.intro-copy   { animation: introTextIn 0.78s cubic-bezier(.22,1,.36,1) 0.44s both; }
+.intro-actions{ animation: introTextIn 0.72s cubic-bezier(.22,1,.36,1) 0.58s both; }
+.intro-stack  { animation: introTextIn 0.72s cubic-bezier(.22,1,.36,1) 0.72s both; }
+.intro-art    { animation: introScaleIn 0.88s cubic-bezier(.22,1,.36,1) 0.70s both; }
+
+/* ---------------------------------------------------------------------------
+   scroll reveals: one observer, staggered via --reveal-delay
+   --------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.72s cubic-bezier(.22,1,.36,1) var(--reveal-delay, 0ms),
+    transform 0.72s cubic-bezier(.22,1,.36,1) var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* bars grow on mount — console pages don't gate them behind scroll reveals */
+@keyframes barGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.grow-x {
+  transform-origin: left center;
+  animation: barGrow 0.9s cubic-bezier(.22,1,.36,1) 0.15s both;
+}
+.is-visible .grow-x,
+.grow-x.is-visible {
+  transform: scaleX(1);
+}
+
+/* ---------------------------------------------------------------------------
+   marquee: the protocol strip + the event crawl
+   --------------------------------------------------------------------------- */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+.marquee-slow {
+  animation-duration: 75s;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* the live dot — breathing acid */
+@keyframes blink {
+  0%, 60% { opacity: 1; }
+  61%, 100% { opacity: 0.15; }
+}
+.blink {
+  animation: blink 1.6s steps(1, end) infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   the paper dish: culture-dot grid + faint acid bloom behind the family tree
+   --------------------------------------------------------------------------- */
+.dish {
+  background-image:
+    radial-gradient(ellipse 62% 52% at 50% 38%, rgba(204, 255, 0, 0.14), transparent 70%),
+    radial-gradient(circle, var(--softrule) 1px, transparent 1px);
+  background-size: 100% 100%, 26px 26px;
+  background-color: var(--paper);
+}
+
+/* thin scrollbars wherever documents overflow — seamless: no track, a hair
+   of a thumb that only declares itself on hover */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--softrule) transparent;
+}
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--softrule);
+  border-radius: 2px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--faint);
+}
+
+.rail {
+  scrollbar-width: thin;
+  scrollbar-color: var(--softrule) transparent;
+}
+
+/* ---------------------------------------------------------------------------
+   the intro veil: a short boot — mark, wordmark, acid tagline, rule — then it
+   lifts upwards like a curtain, ink hairline edge sweeping off the page,
+   while the site beneath settles from a slight zoom-out into place.
+   --------------------------------------------------------------------------- */
+.intro-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  will-change: transform;
+  transition: transform 0.5s cubic-bezier(.76,0,.24,1), visibility 0s linear 0.5s;
+}
+.intro-veil.is-out {
+  transform: translateY(-101%);
+  visibility: hidden;
+  pointer-events: none;
+}
+/* the boot readout exits a touch faster than the curtain — a little parallax */
+.veil-inner {
+  transition: transform 0.4s cubic-bezier(.22,1,.36,1), opacity 0.4s ease;
+}
+.intro-veil.is-out .veil-inner {
+  transform: translateY(-28px);
+  opacity: 0;
+}
+/* the page under the veil: starts a breath zoomed out, settles as it lifts */
+.veil-page {
+  transform: scale(0.976);
+  transform-origin: 50% 38%;
+}
+.veil-page.is-settled {
+  transform: scale(1);
+  transition: transform 0.7s cubic-bezier(.22,1,.36,1) 0.05s;
+}
+.veil-page.is-done {
+  transform: none;
+}
+.veil-mark { animation: introScaleIn 0.5s cubic-bezier(.22,1,.36,1) 0.04s both; }
+.veil-word { animation: introTextIn 0.5s cubic-bezier(.22,1,.36,1) 0.16s both; }
+.veil-tag  { animation: introTextIn 0.5s cubic-bezier(.22,1,.36,1) 0.24s both; }
+.veil-hl {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding: 0.06em 0.26em;
+  border-radius: 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  animation: veilHl 0.38s cubic-bezier(.22,1,.36,1) 0.36s both;
+}
+@keyframes veilHl {
+  from { background-size: 0% 100%; }
+  to { background-size: 100% 100%; }
+}
+.veil-rule {
+  height: 1px;
+  width: 132px;
+  background: var(--rule);
+  transform-origin: center;
+  animation: veilRule 0.38s cubic-bezier(.22,1,.36,1) 0.48s both;
+}
+@keyframes veilRule {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.veil-foot { animation: introTextIn 0.38s cubic-bezier(.22,1,.36,1) 0.6s both; }
+
+/* ---------------------------------------------------------------------------
+   the mark sculpture (incubation page): the plain field's one complex object.
+   3d tilt + acid underlay follow the pointer via --mx/--my (MouseTracker);
+   the mark breathes, a dashed ring spins, orbit text counter-rotates, and
+   acid satellites circle — all css, no js beyond the shared pointer vars.
+   --------------------------------------------------------------------------- */
+.sculpt-stage {
+  perspective: 900px;
+}
+.sculpt-tilt {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform:
+    rotateY(calc((var(--mx, 0.5) - 0.5) * 16deg))
+    rotateX(calc((var(--my, 0.5) - 0.5) * -12deg));
+}
+.sculpt-acid {
+  position: absolute;
+  inset: 20%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent) 0%, rgba(204, 255, 0, 0.45) 42%, rgba(204, 255, 0, 0) 70%);
+  transform: translate(
+    calc((var(--mx, 0.5) - 0.5) * 40px),
+    calc((var(--my, 0.5) - 0.5) * 40px)
+  );
+}
+.sculpt-mark {
+  position: absolute;
+  inset: 13%;
+  width: 74%;
+  height: 74%;
+  animation: sculptBreathe 5.2s cubic-bezier(.22,1,.36,1) infinite;
+}
+@keyframes sculptBreathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.035); }
+}
+.sculpt-ring {
+  position: absolute;
+  inset: 1%;
+  width: 98%;
+  height: 98%;
+  animation: sculptSpin 56s linear infinite;
+}
+.sculpt-orbit {
+  position: absolute;
+  inset: -15%;
+  width: 130%;
+  height: 130%;
+  overflow: visible;
+  animation: sculptSpinRev 38s linear infinite;
+}
+@keyframes sculptSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes sculptSpinRev {
+  to { transform: rotate(-360deg); }
+}
+.sculpt-sat {
+  position: absolute;
+  animation: sculptSpin 14s linear infinite;
+}
+.sculpt-sat > i {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  background: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+.sculpt-sat.sat-b { animation-duration: 21s; animation-direction: reverse; }
+.sculpt-sat.sat-b > i { width: 6px; height: 6px; margin-left: -3px; }
+.sculpt-sat.sat-c { animation-duration: 30s; }
+.sculpt-sat.sat-c > i { width: 5px; height: 5px; margin-left: -2.5px; background: var(--ink); box-shadow: none; }
+
+/* ---------------------------------------------------------------------------
+   the instrument cursor (incubation page): acid square that swells to a ring
+   over links; native pointer hidden while it runs (fine-pointer only).
+   --------------------------------------------------------------------------- */
+@media (pointer: fine) {
+  .has-custom-cursor,
+  .has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+.soon-cursor .sq {
+  transition: transform 0.18s cubic-bezier(.22,1,.36,1), background-color 0.18s, box-shadow 0.18s;
+}
+.soon-cursor.is-hover .sq {
+  transform: translate(-50%, -50%) scale(2.2) !important;
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .intro-mark, .intro-l1, .intro-l2, .intro-copy, .intro-actions, .intro-stack, .intro-art {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .intro-veil { display: none !important; }
+  .veil-page { transform: none !important; transition: none !important; }
+  .sculpt-mark, .sculpt-ring, .sculpt-orbit, .sculpt-sat { animation: none !important; }
+  .sculpt-tilt, .sculpt-acid { transform: none !important; }
+  .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+  .grow-x { animation: none !important; transform: none !important; }
+  .marquee-track { animation: none !important; }
+  .blink { animation: none !important; }
+}

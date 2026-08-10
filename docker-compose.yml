@@ -1,0 +1,35 @@
+# quants deploy — single VPS, per PROJECT.md §2.
+# Season 0 services: db now; orchestrator container lands with its Dockerfile.
+# The site + caddy serve the coming-soon page at https://quants.family.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: quants
+      POSTGRES_PASSWORD: quants
+      POSTGRES_DB: quants
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+  site:
+    build:
+      context: .
+      dockerfile: apps/site/Dockerfile
+    restart: unless-stopped
+    expose:
+      - "4321"
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddydata:/data
+    depends_on:
+      - site
+volumes:
+  dbdata:
+  caddydata:

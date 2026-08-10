@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "id": "g0-eve",
+    "name": "eve",
+    "ticker": "EVE",
+    "generation": 0,
+    "parents": [],
+    "mutations": [],
+    "birthTx": null,
+    "genomeHash": null
+  },
+  "edge": {
+    "archetype": "momentum",
+    "universe": [
+      "NVDA",
+      "PLTR",
+      "COIN"
+    ],
+    "aggression": 0.5,
+    "patience": {
+      "minHoldMin": 60,
+      "maxHoldHrs": 24
+    },
+    "fear": 0.08,
+    "conviction": 0.15,
+    "cadenceMin": 30,
+    "darkHours": 0.5,
+    "entryThesisStyle": "balanced-confluence",
+    "signal": {},
+    "researchStyle": "hybrid",
+    "flowWeight": 0.5,
+    "flowSkepticism": 0.5
+  },
+  "voice": {
+    "archetype": "philosopher",
+    "postsPerDay": 8,
+    "flexStyle": "receipts-only",
+    "beefiness": 0.3,
+    "lowercase": true,
+    "emojiPolicy": "none"
+  }
+}

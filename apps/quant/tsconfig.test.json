@@ -1,0 +1,6 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "composite": false, "declaration": false, "declarationMap": false, "sourceMap": false, "noEmit": true },
+  "include": ["src", "test"],
+  "references": [{ "path": "../../packages/core" }, { "path": "../../packages/chain" }, { "path": "../../packages/paper" }, { "path": "../../packages/brain" }]
+}

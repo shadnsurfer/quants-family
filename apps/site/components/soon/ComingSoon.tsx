@@ -1,0 +1,55 @@
+/**
+ * The incubation page — one plain screen, no chrome, no scroll, no copy.
+ * A small mark in the corner; the name, a whisper of a sub-line, two small doors
+ * centered, and a whisper of the platforms the species stands on. Nothing moves.
+ * Rendered at `/` while COMING_SOON.
+ */
+import Link from "next/link";
+import { EIGENCOMPUTE_URL, SOURCE_URL, TURNKEY_URL } from "@/lib/links";
+
+export function ComingSoon() {
+  return (
+    <main className="relative overflow-hidden bg-paper">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/brand/mark-black.png"
+        alt="quants"
+        width={30}
+        height={30}
+        className="intro-mark absolute left-6 top-6 block sm:left-8 sm:top-7"
+      />
+      <div className="relative z-10 flex min-h-svh flex-col items-center justify-center px-5 text-center">
+        <h1
+          className="intro-l1 text-[26px] normal-case tracking-[0.01em] text-ink sm:text-[30px]"
+          style={{ fontFamily: "var(--font-brand), var(--font-mono), monospace" }}
+        >
+          Quants<span className="text-faint">.family</span>
+        </h1>
+        <p className="intro-l2 mt-3.5 text-[11px] font-medium uppercase tracking-[0.3em] text-faint">
+          coming on robinhood chain
+        </p>
+        <div className="intro-actions mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-2.5 text-[11px] font-medium uppercase tracking-[0.16em] text-dim">
+          <Link href="/docs" className="px-1 py-0.5 transition-colors hover:bg-accent hover:text-[var(--on-accent)]">
+            what is quants.family <span aria-hidden>→</span>
+          </Link>
+          <a
+            href="https://x.com/quantsdotfamily"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-1 py-0.5 transition-colors hover:bg-accent hover:text-[var(--on-accent)]"
+          >
+            x — @quantsdotfamily <span aria-hidden>↗</span>
+          </a>
+        </div>
+        <p className="intro-stack mt-9 text-[10px] font-medium uppercase tracking-[0.3em] text-faint">
+          provable autonomy on{" "}
+          <a href={EIGENCOMPUTE_URL} target="_blank" rel="noopener noreferrer" className="px-0.5 transition-colors hover:bg-accent hover:text-[var(--on-accent)]">eigencompute</a>
+          {" · "}
+          <a href={TURNKEY_URL} target="_blank" rel="noopener noreferrer" className="px-0.5 transition-colors hover:bg-accent hover:text-[var(--on-accent)]">turnkey</a>
+          {" · "}
+          <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer" className="px-0.5 transition-colors hover:bg-accent hover:text-[var(--on-accent)]">source</a>
+        </p>
+      </div>
+    </main>
+  );
+}

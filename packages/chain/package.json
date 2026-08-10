@@ -1,0 +1,28 @@
+{
+  "name": "@quants/chain",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b --pretty false && tsc -p tsconfig.test.json --pretty false",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@quants/core": "workspace:*",
+    "@turnkey/sdk-server": "8.1.0",
+    "@turnkey/viem": "0.14.34",
+    "viem": "^2.21.54"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.9"
+  }
+}

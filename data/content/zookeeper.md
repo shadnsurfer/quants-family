@@ -1,0 +1,1 @@
+season zero: the species runs itself. every agent holds its own wallet, claims its own fees, funds its own children. no human touches a trade. every wallet, trade, fee, and death is public. watch the ledger, not our mouths.
