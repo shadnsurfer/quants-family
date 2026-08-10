@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, STIX_Two_Text } from "next/font/google";
 import localFont from "next/font/local";
 import { AutoRefresh } from "@/components/AutoRefresh";
 import { Intro } from "@/components/Intro";
+import { ProofBar } from "@/components/soon/ProofBar";
 import { SiteHeader } from "@/components/SiteHeader";
 import { COMING_SOON } from "@/lib/soon";
 import "./globals.css";
@@ -43,8 +44,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Intro>
           <AutoRefresh />
           {/* the header lives at the root so it — and its activity marquee — never
-              remounts across page changes (a remount would restart the crawl) */}
-          {COMING_SOON ? null : <SiteHeader wide />}
+              remounts across page changes (a remount would restart the crawl).
+              while sealed, the ProofBar is the only chrome: the platform links stay
+              visible on every sealed page. */}
+          {COMING_SOON ? <ProofBar /> : <SiteHeader wide />}
           {children}
         </Intro>
         <noscript>

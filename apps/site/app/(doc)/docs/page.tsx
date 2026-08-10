@@ -48,8 +48,8 @@ export default function DocsPage() {
       <div className="grid lg:grid-cols-[240px_1fr]">
         {/* ------------------------------------------------------ contents */}
         <aside className="border-r border-rule max-lg:hidden">
-          {/* the live site sticks under the header; the sealed room has none */}
-          <DocsToc items={TOC} stickyClass={COMING_SOON ? "top-6" : "top-[102px]"} />
+          {/* the live site sticks under the header; the sealed room sticks under the ProofBar */}
+          <DocsToc items={TOC} stickyClass={COMING_SOON ? "top-[69px]" : "top-[102px]"} />
         </aside>
 
         <div className="min-w-0">
