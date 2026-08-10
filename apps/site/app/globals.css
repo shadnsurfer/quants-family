@@ -159,7 +159,7 @@ button:focus-visible {
   will-change: transform;
 }
 .marquee-slow {
-  animation-duration: 220s;
+  animation-duration: 140s;
 }
 .marquee-track:hover {
   animation-play-state: paused;
