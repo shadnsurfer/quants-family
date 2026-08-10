@@ -1,10 +1,10 @@
 "use client";
 
 /**
- * The live activity crawl: the species' journal streamed across the site header —
- * births, deaths, trades, tweets, fee claims — newest window, chronological, in the
- * same acid-ruled strip the commandments once occupied. SSR-seeded from the world;
- * AutoRefresh keeps it current.
+ * The live activity crawl: the species' journal streamed across the very top of the
+ * site — births, deaths, trades, tweets, fee claims — newest window, chronological.
+ * A short, dark, near-still strip ABOVE the nav row; one crawl for the whole site.
+ * SSR-seeded from the world; AutoRefresh keeps it current.
  */
 import { fmtAgo, type WorldEvent } from "@/lib/world";
 
@@ -12,12 +12,12 @@ const EVENT_TONE: Record<string, string> = {
   birth: "text-up",
   death: "text-down",
   "fee-claim": "text-amber",
-  trade: "text-ink",
-  tweet: "text-dim",
+  trade: "text-paper",
+  tweet: "text-faint",
   halt: "text-down",
   sweep: "text-amber",
   reward: "text-up",
-  veto: "text-dim",
+  veto: "text-faint",
   milestone: "text-up",
 };
 
@@ -42,19 +42,19 @@ export function ActivityMarquee({
     const detail = e.detail.length > 90 ? `${e.detail.slice(0, 90)}…` : e.detail;
     return (
       <span key={`${e.atMs}-${i}`} className="mx-5 inline-flex items-baseline gap-2">
-        <span className={`text-[10px] font-semibold uppercase tracking-[0.14em] ${EVENT_TONE[e.kind] ?? "text-dim"}`}>
+        <span className={`text-[10px] font-semibold uppercase tracking-[0.14em] ${EVENT_TONE[e.kind] ?? "text-faint"}`}>
           {e.kind}
         </span>
-        <span className="text-[12px] font-medium text-ink">{name}</span>
-        <span className="text-[12px] text-dim">{detail}</span>
+        <span className="text-[12px] font-medium text-paper">{name}</span>
+        <span className="text-[12px] text-faint">{detail}</span>
         <span className="text-[10.5px] uppercase tracking-[0.08em] text-faint">{fmtAgo(e.atMs, endMs)}</span>
       </span>
     );
   });
 
   return (
-    <div className="relative overflow-hidden border-b border-rule bg-paper" aria-label="live activity feed">
-      <div className="marquee-track marquee-slow py-1.5">
+    <div className="relative overflow-hidden bg-ink" aria-label="live activity feed">
+      <div className="marquee-track marquee-slow h-[26px] items-center">
         <span className="inline-flex">{items}</span>
         <span className="inline-flex" aria-hidden="true">{items}</span>
       </div>

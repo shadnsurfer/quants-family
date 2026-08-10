@@ -11,10 +11,10 @@
 :root {
   --paper: #fdfdfb;
   --panel: #f5f5ef;
-  --ink: #111311;
+  --ink: #000000;
   --dim: #565b53;
   --faint: #979c90;
-  --rule: #141614;
+  --rule: #000000;
   --softrule: #e3e3da;
   --accent: #ccff00;
   --up: #14803c;
@@ -27,7 +27,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 84px;
+  scroll-padding-top: 88px;
   background: var(--paper);
 }
 
@@ -57,7 +57,7 @@ button:focus-visible {
 }
 
 [id] {
-  scroll-margin-top: 84px;
+  scroll-margin-top: 88px;
 }
 
 /* the specimen register: stix italic for formulas, final words, specimen notes */
@@ -159,7 +159,7 @@ button:focus-visible {
   will-change: transform;
 }
 .marquee-slow {
-  animation-duration: 75s;
+  animation-duration: 220s;
 }
 .marquee-track:hover {
   animation-play-state: paused;

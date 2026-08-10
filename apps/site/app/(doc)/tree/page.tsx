@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-// the arena IS the tree — culture view by default, tree view one toggle away.
+// the arena IS the tree — one view, no toggle.
 export default function TreePage() {
   redirect("/");
 }

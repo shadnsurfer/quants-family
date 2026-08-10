@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from "react";
 
 export function DocsToc({
   items,
-  stickyClass = "top-[102px]",
+  stickyClass = "top-[88px]",
 }: {
   items: ReadonlyArray<readonly [id: string, label: string]>;
   stickyClass?: string;
