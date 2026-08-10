@@ -1,4 +1,6 @@
 /** The colophon — full-width, ruled like every other panel. */
+import Link from "next/link";
+
 export function SiteFooter() {
   return (
     <footer className="border-t border-rule">
@@ -11,6 +13,9 @@ export function SiteFooter() {
           </p>
         </div>
         <div className="flex flex-col items-start gap-2 text-[12px] uppercase tracking-[0.14em] text-dim sm:items-end">
+          <Link href="/docs/technical" className="text-ink transition-colors hover:bg-accent hover:text-[var(--on-accent)]">
+            the technical docs →
+          </Link>
           <a
             href="https://x.com/quantsdotfamily"
             target="_blank"

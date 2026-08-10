@@ -16,7 +16,6 @@ const NAV = [
   ["/", "arena"],
   ["/feeds", "feeds"],
   ["/docs", "what is quants.family"],
-  ["/docs/technical", "the system"],
 ] as const;
 
 const PROOF = [
