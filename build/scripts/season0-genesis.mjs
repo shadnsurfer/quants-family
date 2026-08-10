@@ -58,7 +58,7 @@ if (balance < needEth) {
   process.exit(1);
 }
 
-const genome = core.parseGenome(JSON.parse(readFileSync(resolve(ROOT, "data/genesis/eve.json"), "utf8")));
+const genome = core.parseGenome(JSON.parse(readFileSync(resolve(ROOT, "data/genesis/quants.json"), "utf8")));
 const KEYSTORE_DIR = resolve(ROOT, "data/keystore");
 // agent zero's wallet is born the same way every child's will be — the custody router
 // (CUSTODY_MODE) decides local keystore vs Turnkey enclave; idempotent, address-only
@@ -85,6 +85,8 @@ const runtime = await system.Season0Runtime.genesis({
   seedUsd: 100,
   nowMs,
   seed: 4663,
+  // agent zero's public X account is the species account (PROJECT.md §1.1)
+  xHandle: "quantsdotfamily",
 }, deps);
 
 // ── custody probe on the agent-zero token: who may claim, and who gets paid?

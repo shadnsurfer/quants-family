@@ -130,11 +130,11 @@ export function burnForCadence(cadenceMin: number): number {
  */
 export const ORPHAN_CLAIM_MIN_USD = 5;
 
-const PROGENITOR = "eve";
+const PROGENITOR = "quants";
 
 /**
  * hand-shaped resume state: [equity ×seed, feeRate $/h, generatedPeak $, childrenCount],
- * indexed [eve, child1, child2]. eve's allowance (2) is spent on the two pre-spawned children;
+ * indexed [quants, child1, child2]. quants' allowance (2) is spent on the two pre-spawned children;
  * child1 (allowance 1) leads fitness and births gen 2 in-window; child2 sits just above the
  * ruin line with collapsed fees — burn debits push it under §4.5 mid-sim on the referee seed (42).
  */

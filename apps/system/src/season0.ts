@@ -133,6 +133,8 @@ export interface GenesisConfig {
   seedUsd: number;
   nowMs: number;
   seed: number;
+  /** agent zero's public X handle — defaults to xHandleOf(name); the species account overrides it */
+  xHandle?: string;
 }
 
 function toOut(q: Season0Quant, equity: number, fitness: number | null, ledger: FlowLedger): EvolutionQuantOut {
@@ -224,7 +226,7 @@ export class Season0Runtime {
     this.ledger.record("launch-fee", launchFeeCents, { fromId: "$operator", toId: "$sink", atMs: cfg.nowMs, note: "real dust launch" });
     state.quants.push({
       id: genome.meta.id, name, ticker: genome.meta.ticker,
-      xHandle: xHandleOf(name),
+      xHandle: cfg.xHandle ?? xHandleOf(name),
       generation: genome.meta.generation, parents: [], genome, genomeHash: genomeHash(genome),
       status: "alive", bornAtMs: cfg.nowMs, diedAtMs: null, causeOfDeath: null, finalWords: null,
       seedUsd: cfg.seedUsd, processRunning: true, lastBroodAtMs: null,

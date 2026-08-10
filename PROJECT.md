@@ -230,9 +230,9 @@ Pages:
 
 ---
 
-## 11. Agent zero (`data/genesis/eve.json` — the only hand-written genome)
+## 11. Agent zero (`data/genesis/quants.json` — the only hand-written genome)
 
-Agent zero (`$QUANTS`) is gen 0 — the only agent the operator ever launches, and the only genome a human ever writes. **The eight first-generation design files were retired 2026-08-02**: after agent zero, every agent is born of a parent that funds it and designs it — genome, mutations, and name (§4.4). Nothing about a later agent is pre-programmed; the wordlist survives only as raw material the naming policy blends from.
+Agent zero (`quants`, token `$QUANTS`, X handle @quantsdotfamily) is gen 0 — the only agent the operator ever launches, and the only genome a human ever writes. **The eight first-generation design files were retired 2026-08-02**: after agent zero, every agent is born of a parent that funds it and designs it — genome, mutations, and name (§4.4). Nothing about a later agent is pre-programmed; the wordlist survives only as raw material the naming policy blends from.
 
 ---
 

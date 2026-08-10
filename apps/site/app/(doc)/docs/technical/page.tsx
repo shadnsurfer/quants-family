@@ -409,7 +409,7 @@ export default function TechnicalDocsPage() {
               disagreed, the hash would tell.
             </p>
             <div className="mt-4">
-              <TextLink href="/q/eve">read agent zero&apos;s live prompt →</TextLink>
+              <TextLink href="/q/quants">read agent zero&apos;s live prompt →</TextLink>
             </div>
           </section>
 

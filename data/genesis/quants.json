@@ -1,7 +1,7 @@
 {
   "meta": {
-    "id": "g0-eve",
-    "name": "eve",
+    "id": "g0-quants",
+    "name": "quants",
     "ticker": "QUANTS",
     "generation": 0,
     "parents": [],
