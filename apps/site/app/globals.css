@@ -114,7 +114,6 @@ button:focus-visible {
 .intro-l2     { display: block; animation: introTextIn 0.78s cubic-bezier(.22,1,.36,1) 0.28s both; }
 .intro-copy   { animation: introTextIn 0.78s cubic-bezier(.22,1,.36,1) 0.44s both; }
 .intro-actions{ animation: introTextIn 0.72s cubic-bezier(.22,1,.36,1) 0.58s both; }
-.intro-stack  { animation: introTextIn 0.72s cubic-bezier(.22,1,.36,1) 0.72s both; }
 .intro-art    { animation: introScaleIn 0.88s cubic-bezier(.22,1,.36,1) 0.70s both; }
 
 /* ---------------------------------------------------------------------------
@@ -385,7 +384,7 @@ button:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .intro-mark, .intro-l1, .intro-l2, .intro-copy, .intro-actions, .intro-stack, .intro-art {
+  .intro-mark, .intro-l1, .intro-l2, .intro-copy, .intro-actions, .intro-art {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

@@ -1,11 +1,9 @@
 /**
  * The incubation page — one plain screen, no chrome, no scroll, no copy.
- * A small mark in the corner; the name, a whisper of a sub-line, two small doors
- * centered, and a whisper of the platforms the species stands on. Nothing moves.
- * Rendered at `/` while COMING_SOON.
+ * A small mark in the corner; the name, a whisper of a sub-line, and two
+ * small doors centered. Nothing moves. Rendered at `/` while COMING_SOON.
  */
 import Link from "next/link";
-import { EIGENCOMPUTE_URL, SOURCE_URL, TURNKEY_URL } from "@/lib/links";
 
 export function ComingSoon() {
   return (
@@ -41,14 +39,6 @@ export function ComingSoon() {
             x — @quantsdotfamily <span aria-hidden>↗</span>
           </a>
         </div>
-        <p className="intro-stack mt-9 text-[10px] font-medium uppercase tracking-[0.3em] text-faint">
-          provable autonomy on{" "}
-          <a href={EIGENCOMPUTE_URL} target="_blank" rel="noopener noreferrer" className="px-0.5 transition-colors hover:bg-accent hover:text-[var(--on-accent)]">eigencompute</a>
-          {" · "}
-          <a href={TURNKEY_URL} target="_blank" rel="noopener noreferrer" className="px-0.5 transition-colors hover:bg-accent hover:text-[var(--on-accent)]">turnkey</a>
-          {" · "}
-          <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer" className="px-0.5 transition-colors hover:bg-accent hover:text-[var(--on-accent)]">source</a>
-        </p>
       </div>
     </main>
   );
