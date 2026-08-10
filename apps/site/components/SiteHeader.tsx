@@ -8,6 +8,7 @@
 import Link from "next/link";
 import { ActivityMarquee } from "@/components/ActivityMarquee";
 import { loadWorld } from "@/lib/data";
+import { EIGENCOMPUTE_URL, SOURCE_URL, TURNKEY_URL } from "@/lib/links";
 import { COMING_SOON } from "@/lib/soon";
 
 const NAV = [
@@ -62,6 +63,27 @@ export function SiteHeader({ wide = false }: { wide?: boolean }) {
             ),
           )}
         </nav>
+        {/* the provable stack rides the menu bar too (spore-style) — external links */}
+        <div className="hidden items-stretch text-[10.5px] font-medium uppercase tracking-[0.12em] text-dim md:flex min-[430px]:tracking-[0.16em]">
+          <span className="hidden select-none items-center border-l border-rule px-3 text-faint xl:flex">
+            provable autonomy on
+          </span>
+          {[
+            [EIGENCOMPUTE_URL, "eigencompute"],
+            [TURNKEY_URL, "turnkey"],
+            [SOURCE_URL, "source"],
+          ].map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center border-l border-rule px-2.5 transition-colors hover:bg-accent hover:text-[var(--on-accent)] sm:px-3"
+            >
+              {label}&nbsp;↗
+            </a>
+          ))}
+        </div>
         {COMING_SOON ? (
           <div className="hidden items-center gap-2 border-r border-rule px-4 text-[12px] text-dim sm:flex">
             <span className="blink inline-block h-[7px] w-[7px] bg-accent" />

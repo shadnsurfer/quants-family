@@ -1,15 +1,24 @@
 /**
  * The incubation page — one plain screen, no chrome, no scroll, no copy.
- * The name, a whisper of a sub-line, and two small doors centered. Nothing moves.
- * The ProofBar (root layout) carries the mark + the platform links above it.
+ * A small mark in the corner; the name, a whisper of a sub-line, two small doors
+ * centered, and a whisper of the platforms the species stands on. Nothing moves.
  * Rendered at `/` while COMING_SOON.
  */
 import Link from "next/link";
+import { EIGENCOMPUTE_URL, SOURCE_URL, TURNKEY_URL } from "@/lib/links";
 
 export function ComingSoon() {
   return (
     <main className="relative overflow-hidden bg-paper">
-      <div className="relative z-10 flex min-h-[calc(100svh-53px)] flex-col items-center justify-center px-5 text-center">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/brand/mark-black.png"
+        alt="quants"
+        width={30}
+        height={30}
+        className="intro-mark absolute left-6 top-6 block sm:left-8 sm:top-7"
+      />
+      <div className="relative z-10 flex min-h-svh flex-col items-center justify-center px-5 text-center">
         <h1
           className="intro-l1 text-[26px] normal-case tracking-[0.01em] text-ink sm:text-[30px]"
           style={{ fontFamily: "var(--font-brand), var(--font-mono), monospace" }}
@@ -32,6 +41,14 @@ export function ComingSoon() {
             x — @quantsdotfamily <span aria-hidden>↗</span>
           </a>
         </div>
+        <p className="intro-stack mt-9 text-[10px] font-medium uppercase tracking-[0.3em] text-faint">
+          provable autonomy on{" "}
+          <a href={EIGENCOMPUTE_URL} target="_blank" rel="noopener noreferrer" className="px-0.5 transition-colors hover:bg-accent hover:text-[var(--on-accent)]">eigencompute</a>
+          {" · "}
+          <a href={TURNKEY_URL} target="_blank" rel="noopener noreferrer" className="px-0.5 transition-colors hover:bg-accent hover:text-[var(--on-accent)]">turnkey</a>
+          {" · "}
+          <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer" className="px-0.5 transition-colors hover:bg-accent hover:text-[var(--on-accent)]">source</a>
+        </p>
       </div>
     </main>
   );
